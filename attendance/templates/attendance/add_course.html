@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'attendance/base.html' %}
+    {% block content %}
+    <h1>Add Course</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="course_name"style="color: black;">Course Name</label>
+        <input type="text" name="course_name" id="course_name" required>
+
+        <label for="course_code"style="color: black;">Course Code</label>
+        <input type="text" name="course_code" id="course_code" required>
+
+        <input type="submit" value="Add Course">
+    </form>
+    {% endblock %}
+</body>
+</html>

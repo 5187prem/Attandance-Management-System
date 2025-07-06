@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% extends 'attendance/base.html' %}
+    {% block content %}
+    <h1>Add Attendance</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="student_id"style="color: black;">Student</label>
+        <select name="student_id" id="student_id">
+            {% for student in students %}
+            <option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="course_id"style="color: black;">Course</label>
+        <select name="course_id" id="course_id">
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="status"style="color: black;">Status</label>
+        <select name="status" id="status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% endblock %}
+</body>
+</html>
